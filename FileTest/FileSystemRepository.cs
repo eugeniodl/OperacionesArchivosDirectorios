@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Linq;
-using System.Security.Cryptography.Pkcs;
 using System.Text;
 using System.Threading.Tasks;
 
@@ -25,24 +24,23 @@ namespace FileTest
             return Directory.GetDirectories(_path);
         }
 
-        public string GetFileInformation()
+        public string GetInformation()
         {
-            if(File.Exists(_path) || Directory.Exists(_path)) 
+            if (File.Exists(_path) || Directory.Exists(_path))
             {
-                string info = $"{_path} existe\n" + Environment.NewLine;
-                info += $"Creación: {File.GetCreationTime(_path)}\n" 
-                    + Environment.NewLine;
-                info += $"Última modificación: {File.GetLastWriteTime(_path)}\n"
-                    + Environment.NewLine;
-                info += $"Último acceso: {File.GetLastAccessTime(_path)}\n"
+                string info = $"{_path} existe\n" +
+                    Environment.NewLine;
+                info += $"Creación: {File.GetCreationTime(_path)}\n" +
+                    Environment.NewLine;
+                info += $"Última modificación: " +
+                    $"{File.GetLastWriteTime(_path)}" + Environment.NewLine;
+                info += $"Último acceso: {File.GetLastAccessTime(_path)}"
                     + Environment.NewLine;
 
                 return info;
             }
             else
-            {
                 return null;
-            }
         }
 
         public string ReadFile()
@@ -51,11 +49,10 @@ namespace FileTest
             {
                 return File.ReadAllText(_path);
             }
-            catch (IOException) 
+            catch (IOException)
             {
                 return null;
             }
-            
         }
     }
 }

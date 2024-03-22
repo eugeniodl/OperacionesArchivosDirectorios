@@ -11,7 +11,6 @@ namespace FileTest
         string[] GetDirectories();
         bool FileExists();
         string ReadFile();
-        string GetFileInformation();
-
+        string GetInformation();
     }
 }

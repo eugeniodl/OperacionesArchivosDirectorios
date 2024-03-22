@@ -36,7 +36,7 @@
             // label1
             // 
             label1.AutoSize = true;
-            label1.Location = new Point(22, 29);
+            label1.Location = new Point(24, 34);
             label1.Name = "label1";
             label1.Size = new Size(184, 15);
             label1.TabIndex = 0;
@@ -44,25 +44,25 @@
             // 
             // inputTextBox
             // 
-            inputTextBox.Location = new Point(24, 58);
+            inputTextBox.Location = new Point(24, 52);
             inputTextBox.Name = "inputTextBox";
-            inputTextBox.Size = new Size(320, 23);
+            inputTextBox.Size = new Size(317, 23);
             inputTextBox.TabIndex = 1;
             inputTextBox.KeyDown += inputTextBox_KeyDown;
             // 
             // outputTextBox
             // 
-            outputTextBox.Location = new Point(23, 99);
+            outputTextBox.Location = new Point(24, 90);
             outputTextBox.Multiline = true;
             outputTextBox.Name = "outputTextBox";
-            outputTextBox.Size = new Size(321, 293);
+            outputTextBox.Size = new Size(317, 337);
             outputTextBox.TabIndex = 2;
             // 
             // FileTestForm
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(371, 415);
+            ClientSize = new Size(362, 450);
             Controls.Add(outputTextBox);
             Controls.Add(inputTextBox);
             Controls.Add(label1);

@@ -19,22 +19,23 @@ namespace FileTest
 
         private void inputTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
+                outputTextBox.Text = string.Empty;
                 string fileName = inputTextBox.Text;
 
-                IFileSystemRepository repository = 
-                    new FileSystemRepository(fileName);
+                IFileSystemRepository repository 
+                    = new FileSystemRepository(fileName);
+                string info = repository.GetInformation();
 
-                string info = repository.GetFileInformation();
-                if(info != null) 
+                if (info != null)
                 {
                     outputTextBox.AppendText(info);
 
                     if(repository.FileExists())
                     {
                         string content = repository.ReadFile();
-                        if(content != null) 
+                        if (content != null)
                         {
                             outputTextBox.AppendText(content);
                         }
@@ -47,12 +48,15 @@ namespace FileTest
                     }
                     else
                     {
-                        string[] directoryList = repository.GetDirectories();
+                        string[] directoryList 
+                            = repository.GetDirectories();
 
-                        outputTextBox.AppendText("Contenido del directorio:\r\n");
-                        foreach( string directory in directoryList )
+                        outputTextBox.AppendText("Contenido del directorio:\n"
+                            + Environment.NewLine);
+                        foreach (string directory in directoryList)
                         {
-                            outputTextBox.AppendText($"{directory}\r\n");
+                            outputTextBox.AppendText($"{directory}\n"
+                                + Environment.NewLine);
                         }
                     }
                 }
