@@ -8,11 +8,11 @@ namespace OperacionesArchivosDirectorios
 {
     public interface IRepository
     {
-        void CreateDirectory();
-        bool DirectoryExists();
-        void CreateFile(string content);
-        string ReadFile();
-        bool FileExists();
-        void DeleteFile();
+        void CreateDirectory(string path);
+        bool DirectoryExists(string path);
+        void CreateFile(string path, string content);
+        string ReadFile(string path);
+        bool FileExists(string path);
+        void DeleteFile(string path);
     }
 }

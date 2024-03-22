@@ -8,64 +8,72 @@ namespace OperacionesArchivosDirectorios
 {
     public class FileSystemRepository : IRepository
     {
-        private string _path;
-
-        public FileSystemRepository(string path)
+        public void CreateDirectory(string path)
         {
-            _path = path;
-        }
-
-        public void CreateDirectory()
-        {
-            if(!Directory.Exists(_path))
+            if (!Directory.Exists(path))
             {
-                Directory.CreateDirectory(_path);
-                Console.WriteLine("Directorio creado correctamente");
+                Directory.CreateDirectory(path);
+                Console.WriteLine("Directorio creado correctamente.");
             }
             else
             {
-                Console.WriteLine("El directorio ya existe");
+                Console.WriteLine("El directorio ya existe.");
             }
         }
 
-        public void CreateFile(string content)
+        public void CreateFile(string path, string content)
         {
-            using(StreamWriter writer = File.CreateText(_path)) 
+            try
             {
-                writer.Write(content);
+                using (StreamWriter sw = File.CreateText(path))
+                {
+                    sw.Write(content);
+                }
+                Console.WriteLine("Archivo creado y contenido escrito " +
+                    "correctamente");
             }
-            Console.WriteLine( "Archivo y contenido creado correctamente");
-        }
-
-        public void DeleteFile()
-        {
-            if(File.Exists(_path))
+            catch (Exception ex)
             {
-                File.Delete(_path);
-                Console.WriteLine("Archivo eliminado correctamente");
+                Console.WriteLine($"Error: {ex.Message}");
             }
         }
 
-        public bool DirectoryExists()
+        public void DeleteFile(string path)
         {
-            return Directory.Exists(_path);
-        }
-
-        public bool FileExists()
-        {
-           return File.Exists(_path);
-        }
-
-        public string ReadFile()
-        {
-            if(File.Exists(_path))
+            if(File.Exists(path))
             {
-                return File.ReadAllText(_path);
+                File.Delete(path);
+                Console.WriteLine("Archivo eliminado correctamente.");
             }
+            else
+
+            {
+                Console.WriteLine( "El archivo no existe");
+            }
+        }
+
+        public bool DirectoryExists(string path)
+        {
+            return Directory.Exists(path);
+        }
+
+        public bool FileExists(string path)
+        {
+            return File.Exists(path);
+        }
+
+        public string ReadFile(string path)
+        {
+            if (File.Exists(path))
+            {
+                return File.ReadAllText(path);
+            }
+                
             else
             {
                 return null;
             }
+                
         }
     }
 }

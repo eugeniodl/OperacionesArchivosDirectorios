@@ -19,38 +19,39 @@ namespace FileTest
 
         private void inputTextBox_KeyDown(object sender, KeyEventArgs e)
         {
-            if(e.KeyCode == Keys.Enter)
+            if (e.KeyCode == Keys.Enter)
             {
                 string fileName = inputTextBox.Text;
-
-                IFileSystemRepository repository = 
-                    new FileSystemRepository(fileName);
+                IFileSystemRepository repository
+                    = new FileSystemRepository(fileName);
 
                 string info = repository.GetFileInformation();
-                if(info != null) 
+
+                if (info != null)
                 {
+
                     outputTextBox.AppendText(info);
 
-                    if(repository.FileExists())
+                    if (repository.FileExists())
                     {
                         string content = repository.ReadFile();
-                        if(content != null) 
+                        if (content != null)
                         {
                             outputTextBox.AppendText(content);
                         }
                         else
                         {
                             MessageBox.Show("Error al leer del archivo",
-                                "Error de archivo", MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
+                            "Error de archivo",
+                            MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
                     }
                     else
                     {
-                        string[] directoryList = repository.GetDirectories();
-
+                        string[] directoryList 
+                            = repository.GetDirectories();
                         outputTextBox.AppendText("Contenido del directorio:\r\n");
-                        foreach( string directory in directoryList )
+                        foreach (string directory in directoryList)
                         {
                             outputTextBox.AppendText($"{directory}\r\n");
                         }
@@ -59,8 +60,8 @@ namespace FileTest
                 else
                 {
                     MessageBox.Show($"{inputTextBox.Text} no existe",
-                                "Error de archivo", MessageBoxButtons.OK,
-                                MessageBoxIcon.Error);
+                        "Error de archivo", MessageBoxButtons.OK,
+                        MessageBoxIcon.Error);
                 }
             }
         }

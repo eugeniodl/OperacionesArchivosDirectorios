@@ -1,19 +1,18 @@
 ﻿using OperacionesArchivosDirectorios;
 
-string directoryPath = @"C:\OpeArDire";
-string filePath = @"C:\OpeArDire\archivo.txt";
+IRepository repository = new FileSystemRepository();
 
-IRepository repository = 
-    new FileSystemRepository(filePath);
+string directoryPath = @"C:\prueba";
+repository.CreateDirectory(directoryPath);
 
-//repository.CreateDirectory();
-repository.CreateFile("Este es un ejemplo de creación de archivo");
+string filePath = @"C:\prueba\prueba.txt";
+repository.CreateFile(filePath, "Este es un ejemplo");
 
-if(repository.FileExists())
+if(repository.FileExists(filePath))
 {
-    string content = repository.ReadFile();
-    Console.WriteLine("Contenido del archivo");
-    Console.WriteLine(content);
+    string content = repository.ReadFile(filePath);
+    Console.WriteLine( "Contenido del archivo");
+    Console.WriteLine( content );
 }
 
-repository.DeleteFile();
+//repository.DeleteFile(filePath);

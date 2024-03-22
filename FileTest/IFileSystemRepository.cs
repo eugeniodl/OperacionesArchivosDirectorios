@@ -12,6 +12,5 @@ namespace FileTest
         bool FileExists();
         string ReadFile();
         string GetFileInformation();
-
     }
 }
